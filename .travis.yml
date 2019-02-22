@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run react-test npm run test -- --coverage
+
+after_success:
+  - docker build -t tkdinh/fib-client ./client
+  - docker build -t tkdinh/fib-nginx ./nginx
+  - docker build -t tkdinh/fib-server ./server
+  - docker build -t tkdinh/fib-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take the images and push to docker hub
+  - docker push tkdinh/fig-client
+  - docker push tkdinh/fig-nginx
+  - docker push tkdinh/fig-server
+  - docker push tkdinh/fig-worker
