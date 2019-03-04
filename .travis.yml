@@ -16,7 +16,7 @@ after_success:
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # Take the images and push to docker hub
-  - docker push tkdinh/fig-client
-  - docker push tkdinh/fig-nginx
-  - docker push tkdinh/fig-server
-  - docker push tkdinh/fig-worker
+  - docker push tkdinh/fib-client
+  - docker push tkdinh/fib-nginx
+  - docker push tkdinh/fib-server
+  - docker push tkdinh/fib-worker
