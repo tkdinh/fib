@@ -14,7 +14,7 @@ after_success:
   - docker build -t tkdinh/fib-server ./server
   - docker build -t tkdinh/fib-worker ./worker
   # Log in to the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # Take the images and push to docker hub
   - docker push tkdinh/fig-client
   - docker push tkdinh/fig-nginx
