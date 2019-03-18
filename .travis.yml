@@ -20,3 +20,16 @@ after_success:
   - docker push tkdinh/fib-nginx
   - docker push tkdinh/fib-server
   - docker push tkdinh/fib-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "fib"
+  env: "Fib-env"
+  bucket_name: "elasticbeanstalk-us-east-1-266891367692"
+  bucket_path: "fib"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
